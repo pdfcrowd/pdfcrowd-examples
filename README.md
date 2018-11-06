@@ -44,4 +44,4 @@ python ./internal/generate_templates.py
 
 ## License
 
-Pdfcrowd examples are released under MIT license.
+This project is licensed under the MIT License.
