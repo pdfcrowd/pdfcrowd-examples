@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+    <head>
+        <meta charset='utf-8'/>
+        <meta name='google' content='notranslate'>
+        <meta http-equiv='Content-Language' content='en'>
+
+        <title>HTML to PDF in PHP Web Server by Pdfcrowd API</title>
+
+        <style>
+         html {
+             background-color: white;
+         }
+         body {
+             font-size: 110%;
+             background-color: #CCCCCC;
+             padding: 0.5em;
+             width: 700px;
+             margin: 0 auto;
+         }
+         .block {
+             border-radius: 10px;
+             -moz-border-radius: 10px;
+             -webkit-border-radius: 10px;
+             border: 1px solid #1e5786;
+             padding: 1em;
+             background-color: white;
+             margin: 0.5em auto;
+             width: fit-content;
+         }
+         h1 {
+             font-size: 30px;
+             margin-top: 0;
+         }
+         h2 {
+             font-size: 26px;
+             margin-top: 0;
+         }
+         form {
+             margin-bottom: 0;
+         }
+         p {
+             margin: 0;
+         }
+         input, select {
+             margin: 0.5em;
+             height: 2.2em;
+             background-color: khaki;
+         }
+         input[type='checkbox'] {
+             width:20px;
+             height: 20px;
+         }
+         input[type=submit] {
+             height: 3em;
+             background-color: #2a7abb;
+             color: white;
+         }
+         @font-face
+         {
+             font-family: 'UniqueRegular';
+             src: url(https://storage.googleapis.com/pdfcrowd-public/Unique.ttf) format('truetype');
+             font-weight: normal;
+             font-style: normal;
+         }
+        </style>
+    </head>
+    <body>
+        <a style='float: right' href='https://pdfcrowd.com'>
+            <img src='https://pdfcrowd.com/static/images/pdfcrowd_icon_48.png'/>
+        </a>
+        <h1>HTML to PDF in PHP Web Server by Pdfcrowd API</h1>
+        <p>This page demonstrates <a href='https://pdfcrowd.com/doc/api/html-to-pdf/php/'>HTML to PDF</a> conversion by <a href='https://pdfcrowd.com/doc/api/'>Pdfcrowd API v2</a> for static and dynamic content.</p>
+
+        <div class='block'>
+            <h2>Custom Font</h2>
+            <div style='font-size: 12pt; font-family: "UniqueRegular";'>
+                <p>ABCČĆDĐEFGHIJKLMNOPQRSŠTUVWXYZŽabcčćdđefghijklmnopqrsštuvwxyzž</p>
+                <p>กขคฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮะาเใไโฤฤๅ</p>
+                <p>1234567890๐๑๒๓๔๕๖๗๘๙‘?’“!”(%)[#]{@}/&\&lt;-+÷×=&gt;®$€£¥¢:;,.*ๆฯฯฯ๏๚๛฿</p>
+            </div>
+        </div>
+
+        <div class='block'>
+            <h2>Google Chart</h2>
+            <div id='piechart' style='width: 400px'></div>
+        </div>
+
+        <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+        <script type='text/javascript'>
+         google.charts.load('current', {'packages':['corechart']});
+         google.charts.setOnLoadCallback(drawChart);
+
+         function drawChart() {
+             var data = google.visualization.arrayToDataTable([
+                 ['Food', 'Preffered'],
+                 ['Fruit', 8],
+                 ['Vegetable', 7],
+                 ['Meat', 4]
+             ]);
+
+             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+             chart.draw(data, {
+                 chartArea: {
+                     left: 40,
+                     top: 10,
+                     width: '100%',
+                     height: 350
+                 }
+             });
+         }
+        </script>
+
+        <div class='block'>
+            <h2>Dynamic Content</h2>
+            <p>Fill out the form to see the data in PDF.</p>
+            <form action='#' method='post'>
+            <p>
+                 <label for='id_first_name'>First name:</label>
+                 <input type='text' name='first_name' id='id_first_name' value='{{ first_name }}'>
+            </p>
+            <p>
+                <label for='id_last_name'>Last name:</label>
+                <input type='text' name='last_name' id='id_last_name' value='{{ last_name }}'>
+            </p>
+            <p>
+                 <label for='id_gender'>Gender:</label>
+                 <select name='gender' id='id_gender'>
+                     <option value=''>------</option>
+                     <option value='M' {{ gender_m }}>Male</option>
+                     <option value='F' {{ gender_f }}>Female</option>
+                 </select>
+            </p>
+            <p>
+                <label for='id_remove_convert_button'>Remove convert buttons from PDF:</label>
+                <input type='checkbox' name='remove_convert_button' id='id_remove_convert_button' {{ remove_buttons }}>
+            </p>
+            <center class='{{ pdfcrowd_remove }}'>
+                <input type='submit' value='Convert to PDF' name='asAttachment'>
+                <input type='submit' value='Convert to PDF and open' name='asInline'>
+            </center>
+        </form>
+        </div>
+
+        <hr style='page-break-before: always; clear: both'>
+
+        <h3>NOTES</h3>
+        <ul>
+          <li>This demo uses API method <a href='https://pdfcrowd.com/doc/api/html-to-pdf/php/#convert_string'>convertString</a>. If your web server has public URLs, you can use simplier solution with <a href='https://pdfcrowd.com/doc/api/html-to-pdf/php/#convert_url'>convertUrl</a> method.</li>
+          <li>The remote font must be served with HTTP header 'Access-Control-Allow-Origin: *' to enable <a href='https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS'>CORS</a>.</li>
+          <li>The page break is placed always before NOTES section. It demonstrates the CSS rule <em>page-break-before: always;</em>
+        </ul>
+    </body>
+</html>
