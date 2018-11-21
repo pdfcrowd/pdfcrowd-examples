@@ -10,6 +10,7 @@ const querystring = require('querystring');
 const FORM_FIELDS = {
     'first_name': '',
     'last_name': '',
+    'part_form': '',
     'gender_m': '',
     'gender_f': '',
     'remove_buttons': '',
@@ -28,9 +29,15 @@ http.createServer(function (req, res) {
             var callbacks = pdfcrowd.sendPdfInHttpResponse(res,
                                                            'demo_nodejs.pdf',
                                                            content_disp);
-            if(data.gender == 'F') {
+
+            // make dropdown controls to show selected values
+            // by setting 'selected' attribute
+            if(data.part_for_conversion === '#form-block') {
+                data.part_form = 'selected';
+            }
+            if(data.gender === 'F') {
                 data.gender_f = 'selected';
-            } else if(data.gender == 'M') {
+            } else if(data.gender === 'M') {
                 data.gender_m = 'selected';
             }
 
@@ -47,6 +54,11 @@ http.createServer(function (req, res) {
 
             // enter your Pdfcrowd credentials to the converter's constructor
             var client = new pdfcrowd.HtmlToPdfClient('your_username', 'your_apikey');
+
+            if(data.part_for_conversion !== 'all') {
+                // convert just selected part of the page
+                client.setElementToConvert(data.part_for_conversion);
+            }
 
             console.log('running Pdfcrowd HTML to PDF conversion');
             client.convertString(html, callbacks);

@@ -8,6 +8,7 @@ class DemoController < ApplicationController
         data = {
             :first_name => '',
             :last_name => '',
+            :part_form => '',
             :gender_m => '',
             :gender_f => '',
             :remove_buttons => '',
@@ -18,6 +19,11 @@ class DemoController < ApplicationController
                 data[key] = params[key]
             end
 
+            # make dropdown controls to show selected values
+            # by setting 'selected' attribute
+            if params[:part_for_conversion] == '#form-block'
+                data[:part_form] = 'selected'
+            end
             if params[:gender] == 'F'
                 data[:gender_f] = 'selected'
             elsif params[:gender] == 'M'
@@ -37,6 +43,11 @@ class DemoController < ApplicationController
             begin
                 # enter your Pdfcrowd credentials to the converter's constructor
                 client = Pdfcrowd::HtmlToPdfClient.new('your_username', 'your_apikey')
+
+                if params[:part_for_conversion] != 'all'
+                    # convert just selected part of the page
+                    client.setElementToConvert(params[:part_for_conversion])
+                end
 
                 # convert a web page and store the generated PDF to a variable
                 logger.info 'running Pdfcrowd HTML to PDF conversion'

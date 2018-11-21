@@ -35,7 +35,13 @@ public class DemoController {
     public ResponseEntity<byte[]> convertToPdf(@Valid @ModelAttribute("data") TestForm data,
       BindingResult result, ModelMap model) {
         // enter your Pdfcrowd credentials to the converter's constructor
-        Pdfcrowd.HtmlToPdfClient client = new Pdfcrowd.HtmlToPdfClient("your_username", "your_apikey");
+        Pdfcrowd.HtmlToPdfClient client = new Pdfcrowd.HtmlToPdfClient(
+            "your_username", "your_apikey");
+
+        if(!data.getPartForConversion().equals("all")) {
+            // convert just selected part of the page
+            client.setElementToConvert(data.getPartForConversion());
+        }
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Cache-Control", "max-age=0");

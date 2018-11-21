@@ -18,6 +18,8 @@ namespace PdfcrowdDemo {
         protected System.Web.UI.WebControls.TextBox firstName;
         
         protected System.Web.UI.WebControls.TextBox lastName;
+
+		protected System.Web.UI.WebControls.DropDownList partForConversion;
         
         protected System.Web.UI.WebControls.DropDownList gender;
         

@@ -24,6 +24,15 @@ FORM = """<form action='#' method='post'>
                 <input type='text' name='last_name' id='id_last_name' value='{}'>
             </p>
             <p>
+                 <label for='id_part_for_conversion'>Part of the page for the conversion:</label>
+                 <select name='part_for_conversion' id='id_part_for_conversion'>
+                     <option value='all'>Everything</option>
+                     <option value='#font-block'>Custom Font</option>
+                     <option value='#chart-block'>Google Chart</option>
+                     <option value='#form-block' {}>Dynamic Content</option>
+                 </select>
+            </p>
+            <p>
                  <label for='id_gender'>Gender:</label>
                  <select name='gender' id='id_gender'>
                      <option value=''>------</option>
@@ -37,21 +46,22 @@ FORM = """<form action='#' method='post'>
             </p>
             """
 
-def get_form_with_vars(first_name, last_name, gender_m, gender_f, remove_buttons, buttons):
-    return FORM.format(first_name, last_name, gender_m, gender_f, remove_buttons) + buttons
-
+def get_form_with_vars(first_name, last_name,
+                       part_form,
+                       gender_m, gender_f, remove_buttons, buttons):
+    return FORM.format(first_name, last_name,
+                       part_form,
+                       gender_m, gender_f, remove_buttons) + buttons
 
 FORM_JINJA = get_form_with_vars('{{ first_name }}', '{{ last_name }}',
+                                '{{ part_form }}',
                                 '{{ gender_m }}', '{{ gender_f }}',
                                 '{{ remove_buttons }}', BUTTONS_JINJA)
 
 FORM_ERB = get_form_with_vars('<%= first_name %>', '<%= last_name %>',
+                              '<%= part_form %>',
                               '<%= gender_m %>', '<%= gender_f %>',
                               '<%= remove_buttons %>', BUTTONS_ERB)
-
-FORM_SPRING = get_form_with_vars('${data.firstName}', '<%= last_name %>',
-                                 '<%= gender_m %>', '<%= gender_f %>',
-                                 '<%= remove_buttons %>', BUTTONS_ERB)
 
 FORM_SPRING = """<form action='#' method='post'>
             <p>
@@ -67,6 +77,15 @@ FORM_SPRING = """<form action='#' method='post'>
                      <option value=''>------</option>
                      <option value='M' th:selected="${data.gender == 'M'}">Male</option>
                      <option value='F' th:selected="${data.gender == 'F'}">Female</option>
+                 </select>
+            </p>
+            </p>
+                 <label for='part_for_conversion'>Part of the page for the conversion:</label>
+                 <select name='partForConversion' id='part_for_conversion'>
+                     <option value='all'>Everything</option>
+                     <option value='#font-block'>Custom Font</option>
+                     <option value='#chart-block'>Google Chart</option>
+                     <option value='#form-block' th:selected="${data.partForConversion == '#form-block'}">Dynamic Content</option>
                  </select>
             </p>
             <p>
@@ -97,6 +116,15 @@ FORM_ASP_NET = """<form id="form1" runat="server">
                 </asp:DropDownList>
             </p>
             <p>
+                <asp:Label AssociatedControlId="partForConversion" Text="Part of the page for the conversion:" runat="server" />
+                <asp:DropDownList id="partForConversion" runat="server">
+                    <asp:ListItem Text ="Everything" Value = "all"></asp:ListItem>
+                    <asp:ListItem Text ="Custom Font" Value ="#font-block"></asp:ListItem>
+                    <asp:ListItem Text ="Google Chart" Value ="#chart-block"></asp:ListItem>
+                    <asp:ListItem Text ="Dynamic Content" Value ="#form-block"></asp:ListItem>
+                </asp:DropDownList>
+            </p>
+            <p>
                 <asp:Label AssociatedControlId="removeConvertButton" Text="Remove convert buttons from PDF:" runat="server" />
                 <asp:CheckBox id="removeConvertButton" runat="server" />
             </p>
@@ -111,7 +139,7 @@ LANGS = (
         'framework': 'Django',
         'lang': 'python',
         'prerequisites': ['python'],
-        'cred_file': '[demo/views.py](demo/views.py#L34)',
+        'cred_file': '[demo/views.py](demo/views.py#L41)',
         'install': [
             'pip install -r requirements.txt'
             ],
@@ -119,7 +147,7 @@ LANGS = (
             'python manage.py runserver 8080'
             ],
         'form': """<form action='#' method='post'>
-            {{% csrf_token %}}
+            {{% if csrf_token %}}{{% csrf_token %}}{{% endif %}}
             {{{{ form.as_p }}}}
             {}""".format(BUTTONS_JINJA)
         }
@@ -135,8 +163,9 @@ LANGS = (
             ],
         'index_path': 'index.html',
         'prerequisites': ['nodejs', 'npm'],
-        'cred_file': '[server.js](server.js#L49)',
+        'cred_file': '[server.js](server.js#L56)',
         'form': get_form_with_vars('$first_name', '$last_name',
+                                   '$part_form',
                                    '$gender_m', '$gender_f',
                                    '$remove_buttons',
                                    BUTTONS.format('$pdfcrowd_remove'))
@@ -152,7 +181,7 @@ LANGS = (
             'nodejs app.js'
             ],
         'prerequisites': ['nodejs', 'npm'],
-        'cred_file': '[app.js](app.js#L49)',
+        'cred_file': '[app.js](app.js#L55)',
         'form': FORM_JINJA
         }
      ),
@@ -178,10 +207,10 @@ LANGS = (
             'bundle install'
             ],
         'start': [
-            'rails server'
+            'rails server -p 8080'
             ],
         'prerequisites': ['ruby', 'ruby-dev', 'ruby-bundler'],
-        'cred_file': '[app/controllers/demo_controller.rb](app/controllers/demo_controller.rb#L39)',
+        'cred_file': '[app/controllers/demo_controller.rb](app/controllers/demo_controller.rb#L45)',
         'index_path': 'app/views/demo/index.html.erb',
         'form': FORM_ERB
         }
@@ -196,7 +225,7 @@ LANGS = (
             'java -jar build/libs/pdfcrowd-demo-0.1.0.jar'
             ],
         'prerequisites': ['java', 'gradle'],
-        'cred_file': '[src/main/java/demo/DemoController.java](src/main/java/demo/DemoController.java#L38)',
+        'cred_file': '[src/main/java/demo/DemoController.java](src/main/java/demo/DemoController.java#L39)',
         'index_path': 'src/main/resources/templates/index.html',
         'form': FORM_SPRING
         }
@@ -211,7 +240,7 @@ LANGS = (
             'xsp --port=8080'
             ],
         'prerequisites': ['.NET', 'XSP'],
-        'cred_file': '[Default.aspx.cs](Default.aspx.cs#L54)',
+        'cred_file': '[Default.aspx.cs](Default.aspx.cs#L55)',
         'index_path': 'Default.aspx',
         'form': FORM_ASP_NET,
         'html_top': '<%@ Page Language="C#" Inherits="PdfcrowdDemo.Default" %>'

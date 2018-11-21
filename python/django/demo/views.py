@@ -18,6 +18,13 @@ class TestForm(forms.Form):
         choices=(('', '------'),
                  ('M', 'Male'),
                  ('F', 'Female')))
+    part_for_conversion = forms.ChoiceField(
+        required=False,
+        label='Part of the page for the conversion',
+        choices=(('all', 'Everything'),
+                 ('#font-block', 'Custom Font'),
+                 ('#chart-block', 'Google Chart'),
+                 ('#form-block', 'Dynamic Content')))
     remove_convert_button = forms.BooleanField(required=False, label='Remove convert buttons from PDF')
 
 def index(request):
@@ -28,6 +35,11 @@ def index(request):
     try:
         # enter your Pdfcrowd credentials to the converter's constructor
         client = pdfcrowd.HtmlToPdfClient('your-username', 'your-apikey')
+
+        part = request.POST.get('part_for_conversion')
+        if part != None and part != 'all':
+            # convert just selected part of the page
+            client.setElementToConvert(part)
 
         # convert a web page and store the generated PDF to a variable
         logger.info('running Pdfcrowd HTML to PDF conversion')

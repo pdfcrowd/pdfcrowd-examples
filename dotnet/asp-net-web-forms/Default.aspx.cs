@@ -54,6 +54,12 @@ namespace PdfcrowdDemo
                 pdfcrowd.HtmlToPdfClient client = new pdfcrowd.HtmlToPdfClient(
 					"your_username", "your_apikey");
 
+				if(partForConversion.SelectedValue != "all")
+                {
+					// convert just selected part of the page
+					client.setElementToConvert(partForConversion.SelectedValue);
+                }
+
                 // run the conversion and write the result to a file
                 return client.convertString(html);
             }

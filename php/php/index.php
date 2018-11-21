@@ -12,6 +12,11 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 // POST request section
 
 // prepare data set for HTML rendering
+// make dropdown controls to show selected values
+// by setting 'selected' attribute
+if($_POST['part_for_conversion'] == '#form-block') {
+    $_POST['part_form'] = 'selected';
+}
 if($_POST['gender'] == 'F') {
     $_POST['gender_f'] = 'selected';
 } else if($_POST['gender'] == 'M') {
@@ -40,6 +45,11 @@ try
 {
     // enter your Pdfcrowd credentials to the converter's constructor
     $client = new \Pdfcrowd\HtmlToPdfClient('your_username', 'your_apikey');
+
+    if($_POST['part_for_conversion'] != 'all') {
+        // convert just selected part of the page
+        $client->setElementToConvert($_POST['part_for_conversion']);
+    }
 
     echo 'running Pdfcrowd HTML to PDF conversion';
     $pdf = $client->convertString($html);

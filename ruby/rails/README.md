@@ -10,7 +10,7 @@ ruby-dev
 ruby-bundler
 ```
 
-Replace **'your_username'** with your Pdfcrowd username and **'your_apikey'** with your Pdfcrowd API key in **[app/controllers/demo_controller.rb](app/controllers/demo_controller.rb#L39)** file. Sign up for a [free trial](https://pdfcrowd.com/user/sign_up/?pid=api-trial2) if you don't have the credentials.
+Replace **'your_username'** with your Pdfcrowd username and **'your_apikey'** with your Pdfcrowd API key in **[app/controllers/demo_controller.rb](app/controllers/demo_controller.rb#L45)** file. Sign up for a [free trial](https://pdfcrowd.com/user/sign_up/?pid=api-trial2) if you don't have the credentials.
 
 ## Installing
 
@@ -22,7 +22,7 @@ bundle install
 ## Web server start
 
 ```
-rails server
+rails server -p 8080
 ```
 
 ## Test
