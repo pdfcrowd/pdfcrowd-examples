@@ -1,4 +1,4 @@
-import views
+import demo.views as views
 from django.conf.urls import url
 
 urlpatterns = [

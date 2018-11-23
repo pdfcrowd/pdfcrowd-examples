@@ -115,7 +115,7 @@
             <h2>Dynamic Content</h2>
             <p>Fill out the form to see the data in PDF.</p>
             <form action='#' method='post'>
-            {% csrf_token %}
+            {% if csrf_token %}{% csrf_token %}{% endif %}
             {{ form.as_p }}
             <center class='{{ pdfcrowd_remove }}'>
                 <input type='submit' value='Convert to PDF' name='asAttachment'>

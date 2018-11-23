@@ -1,3 +1,4 @@
+import sys
 import logging
 from django.http import HttpResponse
 from django.template.loader import render_to_string
@@ -21,32 +22,32 @@ class TestForm(forms.Form):
 
 def index(request):
     form = TestForm(request.POST)
-    response = render(request, 'index.html', {
-        'form': form,
-        'pdfcrowd_remove': 'pdfcrowd-remove' if form.data.get('remove_convert_button') else ''
-        })
-
     if request.method != 'POST':
-        return response
+        return render(request, 'index.html', {'form': form})
 
     try:
         # enter your Pdfcrowd credentials to the converter's constructor
-        client = pdfcrowd.HtmlToPdfClient('your_username', 'your_apikey')
+        client = pdfcrowd.HtmlToPdfClient('your-username', 'your-apikey')
 
         # convert a web page and store the generated PDF to a variable
         logger.info('running Pdfcrowd HTML to PDF conversion')
-        pdf = client.convertString(response.content)
 
         # set HTTP response headers
-        pdf_response = HttpResponse(content_type='application/pdf')
-        pdf_response['Cache-Control'] = 'max-age=0'
-        pdf_response['Accept-Ranges'] = 'none'
+        response = HttpResponse(content_type='application/pdf')
+        response['Cache-Control'] = 'max-age=0'
+        response['Accept-Ranges'] = 'none'
         content_disp = 'attachment' if 'asAttachment' in request.POST else 'inline'
-        pdf_response['Content-Disposition'] = content_disp + '; filename=demo_django.pdf'
+        response['Content-Disposition'] = content_disp + '; filename=demo_django.pdf'
+
+        html = render_to_string(
+            'index.html', {
+                'form': form,
+                'pdfcrowd_remove': 'pdfcrowd-remove' if form.data.get('remove_convert_button') else ''
+                })
+        client.convertStringToStream(html, response)
 
         # send the generated PDF
-        pdf_response.write(pdf)
-        return pdf_response
+        return response
     except pdfcrowd.Error as why:
         logger.error('Pdfcrowd Error: %s', why)
         return HttpResponse(why)
