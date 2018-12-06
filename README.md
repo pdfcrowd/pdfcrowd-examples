@@ -29,6 +29,10 @@ Ruby:
 
 - [ASP.NET Web Forms](../../tree/master/dotnet/asp-net-web-forms)
 
+## Helper Utilities
+
+Some helper utilities (e.g. batch HTML to PDF conversion) can be found in [tools](../../tree/master/tools) folder.
+
 ## Documentation
 
 * API Home:  <https://pdfcrowd.com/doc/api/>
