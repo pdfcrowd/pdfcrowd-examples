@@ -27,9 +27,15 @@ app.get('/', (req, res) => res.render('index'))
 app.post('/', function(req, res){
     var data = req.body;
     var content_disp = data.asAttachment ? 'attachment' : 'inline';
-    if(data.gender == 'F') {
+
+    // make dropdown controls to show selected values
+    // by setting 'selected' attribute
+    if(data.part_for_conversion === '#form-block') {
+        data.part_form = 'selected';
+    }
+    if(data.gender === 'F') {
         data.gender_f = 'selected';
-    } else if(data.gender == 'M') {
+    } else if(data.gender === 'M') {
         data.gender_m = 'selected';
     }
 
@@ -47,6 +53,11 @@ app.post('/', function(req, res){
 
         // enter your Pdfcrowd credentials to the converter's constructor
         var client = new pdfcrowd.HtmlToPdfClient('your_username', 'your_apikey');
+
+        if(data.part_for_conversion !== 'all') {
+            // convert just selected part of the page
+            client.setElementToConvert(data.part_for_conversion);
+        }
 
         var callbacks = pdfcrowd.sendPdfInHttpResponse(res,
                                                        'demo_express.pdf',

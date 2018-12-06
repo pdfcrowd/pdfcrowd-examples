@@ -72,7 +72,7 @@
         <h1>HTML to PDF in ASP.NET Web Forms by Pdfcrowd API</h1>
         <p>This page demonstrates <a href='https://pdfcrowd.com/doc/api/html-to-pdf/dotnet/'>HTML to PDF</a> conversion by <a href='https://pdfcrowd.com/doc/api/'>Pdfcrowd API v2</a> for static and dynamic content.</p>
 
-        <div class='block'>
+        <div class='block' id='font-block'>
             <h2>Custom Font</h2>
             <div style='font-size: 12pt; font-family: "UniqueRegular";'>
                 <p>ABCČĆDĐEFGHIJKLMNOPQRSŠTUVWXYZŽabcčćdđefghijklmnopqrsštuvwxyzž</p>
@@ -81,7 +81,7 @@
             </div>
         </div>
 
-        <div class='block'>
+        <div class='block' id='chart-block'>
             <h2>Google Chart</h2>
             <div id='piechart' style='width: 400px'></div>
         </div>
@@ -111,9 +111,9 @@
          }
         </script>
 
-        <div class='block'>
+        <div class='block' id='form-block'>
             <h2>Dynamic Content</h2>
-            <p>Fill out the form to see the data in PDF.</p>
+            <p>Fill out the form to see the data in PDF. Select what you want to convert.</p>
             <form id="form1" runat="server">
             <p>
                 <asp:Label AssociatedControlId="firstName" Text="First name:" runat="server" />
@@ -132,6 +132,15 @@
                 </asp:DropDownList>
             </p>
             <p>
+                <asp:Label AssociatedControlId="partForConversion" Text="Part of the page for the conversion:" runat="server" />
+                <asp:DropDownList id="partForConversion" runat="server">
+                    <asp:ListItem Text ="Everything" Value = "all"></asp:ListItem>
+                    <asp:ListItem Text ="Custom Font" Value ="#font-block"></asp:ListItem>
+                    <asp:ListItem Text ="Google Chart" Value ="#chart-block"></asp:ListItem>
+                    <asp:ListItem Text ="Dynamic Content" Value ="#form-block"></asp:ListItem>
+                </asp:DropDownList>
+            </p>
+            <p>
                 <asp:Label AssociatedControlId="removeConvertButton" Text="Remove convert buttons from PDF:" runat="server" />
                 <asp:CheckBox id="removeConvertButton" runat="server" />
             </p>
@@ -142,13 +151,13 @@
         </form>
         </div>
 
-        <hr style='page-break-before: always; clear: both'>
+        <hr style='page-break-before: always;'>
 
         <h3>NOTES</h3>
         <ul>
           <li>This demo uses API method <a href='https://pdfcrowd.com/doc/api/html-to-pdf/dotnet/#convert_string'>convertString</a>. If your web server has public URLs, you can use simplier solution with <a href='https://pdfcrowd.com/doc/api/html-to-pdf/dotnet/#convert_url'>convertUrl</a> method.</li>
           <li>The remote font must be served with HTTP header 'Access-Control-Allow-Origin: *' to enable <a href='https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS'>CORS</a>.</li>
-          <li>The page break is placed always before NOTES section. It demonstrates the CSS rule <em>page-break-before: always;</em>
+          <li>The page break is placed always before NOTES section. It demonstrates the CSS rule <em>page-break-before: always;</em></li>
         </ul>
     </body>
 </html>

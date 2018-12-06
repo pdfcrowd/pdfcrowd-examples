@@ -72,7 +72,7 @@
         <h1>HTML to PDF in Ruby on Rails by Pdfcrowd API</h1>
         <p>This page demonstrates <a href='https://pdfcrowd.com/doc/api/html-to-pdf/ruby/'>HTML to PDF</a> conversion by <a href='https://pdfcrowd.com/doc/api/'>Pdfcrowd API v2</a> for static and dynamic content.</p>
 
-        <div class='block'>
+        <div class='block' id='font-block'>
             <h2>Custom Font</h2>
             <div style='font-size: 12pt; font-family: "UniqueRegular";'>
                 <p>ABCČĆDĐEFGHIJKLMNOPQRSŠTUVWXYZŽabcčćdđefghijklmnopqrsštuvwxyzž</p>
@@ -81,7 +81,7 @@
             </div>
         </div>
 
-        <div class='block'>
+        <div class='block' id='chart-block'>
             <h2>Google Chart</h2>
             <div id='piechart' style='width: 400px'></div>
         </div>
@@ -111,9 +111,9 @@
          }
         </script>
 
-        <div class='block'>
+        <div class='block' id='form-block'>
             <h2>Dynamic Content</h2>
-            <p>Fill out the form to see the data in PDF.</p>
+            <p>Fill out the form to see the data in PDF. Select what you want to convert.</p>
             <form action='#' method='post'>
             <p>
                  <label for='id_first_name'>First name:</label>
@@ -122,6 +122,15 @@
             <p>
                 <label for='id_last_name'>Last name:</label>
                 <input type='text' name='last_name' id='id_last_name' value='<%= last_name %>'>
+            </p>
+            <p>
+                 <label for='id_part_for_conversion'>Part of the page for the conversion:</label>
+                 <select name='part_for_conversion' id='id_part_for_conversion'>
+                     <option value='all'>Everything</option>
+                     <option value='#font-block'>Custom Font</option>
+                     <option value='#chart-block'>Google Chart</option>
+                     <option value='#form-block' <%= part_form %>>Dynamic Content</option>
+                 </select>
             </p>
             <p>
                  <label for='id_gender'>Gender:</label>
@@ -142,13 +151,13 @@
         </form>
         </div>
 
-        <hr style='page-break-before: always; clear: both'>
+        <hr style='page-break-before: always;'>
 
         <h3>NOTES</h3>
         <ul>
           <li>This demo uses API method <a href='https://pdfcrowd.com/doc/api/html-to-pdf/ruby/#convert_string'>convertString</a>. If your web server has public URLs, you can use simplier solution with <a href='https://pdfcrowd.com/doc/api/html-to-pdf/ruby/#convert_url'>convertUrl</a> method.</li>
           <li>The remote font must be served with HTTP header 'Access-Control-Allow-Origin: *' to enable <a href='https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS'>CORS</a>.</li>
-          <li>The page break is placed always before NOTES section. It demonstrates the CSS rule <em>page-break-before: always;</em>
+          <li>The page break is placed always before NOTES section. It demonstrates the CSS rule <em>page-break-before: always;</em></li>
         </ul>
     </body>
 </html>
