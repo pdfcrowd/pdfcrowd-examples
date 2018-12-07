@@ -1,7 +1,6 @@
 import argparse
 import sys
 import os
-import logging
 import pdfcrowd
 from helpers import gen_urls, logger
 
@@ -25,8 +24,7 @@ def convert_pages(username, apikey, pages, out):
         client.convertToFile(out)
 
     except pdfcrowd.Error as why:
-        # report the error to the standard error stream
-        sys.stderr.write('Pdfcrowd Error: {}\n'.format(why))
+        logger.error('Pdfcrowd Error: %s', why)
         sys.exit(1)
 
 if __name__ == '__main__':

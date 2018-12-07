@@ -4,7 +4,6 @@ import argparse
 import sys
 import os
 from datetime import datetime
-import logging
 import pdfcrowd
 from helpers import gen_urls, logger
 
@@ -45,8 +44,7 @@ def create_brochure(username, apikey, out):
         client.convertToFile(out)
 
     except pdfcrowd.Error as why:
-        # report the error to the standard error stream
-        sys.stderr.write('Pdfcrowd Error: {}\n'.format(why))
+        logger.error('Pdfcrowd Error: %s', why)
         sys.exit(1)
 
 if __name__ == '__main__':
