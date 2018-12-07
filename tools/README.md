@@ -18,7 +18,9 @@ pip install pdfcrowd
 
 ## Batch HTML to PDF Conversion
 
-A utility for converting URLs into PDF files. URLs may be specified in a text file or a sitemap XML file. Run Wikipedia examples with:
+A utility for converting URLs into PDF files. URLs may be specified in a text file or a sitemap XML file.
+
+Run Wikipedia examples with:
 ```
 python convert_pages.py --user $USER_NAME --key $API_KEY --pages sample_urls.txt --out out
 ```
@@ -28,7 +30,11 @@ python convert_pages.py --user $USER_NAME --key $API_KEY --pages sample_sitemap.
 
 ## Multiple URLs to a Single PDF File
 
-A utility for converting multiple URLs into a single PDF file. URLs may be specified in a text file or a sitemap XML file. Run Wikipedia example with:
+A utility for converting multiple URLs into a single PDF file. URLs may be specified in a text file or a sitemap XML file.
+
+WARNING: This script is just for demo and can consume lots of Pdfcrowd credits! So there is a default limit of 10 pages. Use --max-pages option to increase the limit on your own risk.
+
+Run Wikipedia example with:
 ```
 python convert_pages_to_single_pdf.py --user $USER_NAME --key $API_KEY --pages sample_urls.txt --out wiki.pdf
 ```
@@ -41,7 +47,9 @@ Hint: you can create the sitemap.xml for your site by e.g. [Online Generator](ht
 
 ## Create a Brochure from Multiple HTML Pages
 
-A demo utility for converting multiple URLs into a single PDF file. Run the demo with:
+A demo utility for converting multiple URLs into a single PDF file.
+
+Run the demo with:
 ```
 python create_brochure.py --user $USER_NAME --key $API_KEY --out brochure.pdf
 ```
