@@ -246,10 +246,26 @@ LANGS = (
         'html_top': '<%@ Page Language="C#" Inherits="PdfcrowdDemo.Default" %>'
         }
      ),
+     ('ajax', {
+        'framework': 'Ajax Request',
+        'lang': 'rest',
+        'test': 'index.html in your web browser.',
+        'cred_file': '[post_request.js](post_request.js#L48)',
+        'index_path': 'index.html',
+        'form': FORM.format('', '', '', '', '', '') + """
+            <center class='block-button'>
+                <input type='submit' value='Convert to PDF'>
+            </center>
+        </form>""",
+        'head': """
+        <script type='text/javascript' src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+        <script type='text/javascript' src='post_request.js'></script>
+        """
+        }
+     ),
 )
 
 env = Environment(loader=FileSystemLoader(THIS_DIR),
-                  undefined=StrictUndefined,
                   keep_trailing_newline=True)
 env.trim_blocks = True
 env.lstrip_blocks = True

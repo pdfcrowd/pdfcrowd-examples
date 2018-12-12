@@ -47,7 +47,7 @@ Hint: you can create the sitemap.xml for your site by e.g. [Online Generator](ht
 
 ## Create a Brochure from Multiple HTML Pages
 
-A demo utility for converting multiple URLs into a single PDF file.
+A demo utility for converting multiple URLs into a single PDF file with different pages orientation.
 
 Run the demo with:
 ```
