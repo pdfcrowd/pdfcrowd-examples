@@ -51,7 +51,7 @@ try
         $client->setElementToConvert($_POST['part_for_conversion']);
     }
 
-    echo 'running Pdfcrowd HTML to PDF conversion';
+    // running Pdfcrowd HTML to PDF conversion
     $pdf = $client->convertString($html);
 
     header('Content-Type: application/pdf');
