@@ -13,10 +13,11 @@ for SRC in php/php/index.php \
                nodejs/nodejs/server.js \
                nodejs/express/app.js \
                python/django/demo/views.py \
+               ajax/post_request.js \
                dotnet/asp-net-web-forms/Default.aspx.cs \
                ruby/rails/app/controllers/demo_controller.rb
 do
     SRC=$PROJECT_DIR/$SRC
-    sed -i s/your_username/$USERNAME/g $SRC
-    sed -i s/your_apikey/$APIKEY/g $SRC
+    sed -i s/demo/$USERNAME/g $SRC
+    sed -i s/ce544b6ea52a5621fb9d55f8b542d14d/$APIKEY/g $SRC
 done

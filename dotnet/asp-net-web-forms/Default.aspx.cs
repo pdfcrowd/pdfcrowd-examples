@@ -52,7 +52,7 @@ namespace PdfcrowdDemo
             {
 				// enter your Pdfcrowd credentials to the converter's constructor
                 pdfcrowd.HtmlToPdfClient client = new pdfcrowd.HtmlToPdfClient(
-					"your_username", "your_apikey");
+					"demo", "ce544b6ea52a5621fb9d55f8b542d14d");
 
 				if(partForConversion.SelectedValue != "all")
                 {

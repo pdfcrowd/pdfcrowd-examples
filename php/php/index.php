@@ -44,7 +44,7 @@ if(array_key_exists('asAttachment', $_POST)) {
 try
 {
     // enter your Pdfcrowd credentials to the converter's constructor
-    $client = new \Pdfcrowd\HtmlToPdfClient('your_username', 'your_apikey');
+    $client = new \Pdfcrowd\HtmlToPdfClient('demo', 'ce544b6ea52a5621fb9d55f8b542d14d');
 
     if($_POST['part_for_conversion'] != 'all') {
         // convert just selected part of the page

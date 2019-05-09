@@ -52,7 +52,7 @@ app.post('/', function(req, res){
         }
 
         // enter your Pdfcrowd credentials to the converter's constructor
-        var client = new pdfcrowd.HtmlToPdfClient('your_username', 'your_apikey');
+        var client = new pdfcrowd.HtmlToPdfClient('demo', 'ce544b6ea52a5621fb9d55f8b542d14d');
 
         if(data.part_for_conversion !== 'all') {
             // convert just selected part of the page

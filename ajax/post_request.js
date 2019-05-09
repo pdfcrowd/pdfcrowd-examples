@@ -45,7 +45,7 @@ window.onload = function() {
             data['element_to_convert'] = el_to_convert;
         }
 
-        var token = btoa('your_username:your_apikey');
+        var token = btoa('demo:ce544b6ea52a5621fb9d55f8b542d14d');
         $.ajax({
             type: 'POST',
             url: 'https://api.pdfcrowd.com/convert/',

@@ -9,15 +9,13 @@ java
 gradle
 ```
 
-Replace **'your_username'** with your Pdfcrowd username and **'your_apikey'** with your Pdfcrowd API key in **[src/main/java/demo/DemoController.java](src/main/java/demo/DemoController.java#L39)** file. Sign up for a [free trial](https://pdfcrowd.com/user/sign_up/?pid=api-trial2) if you don't have the credentials.
-
 ## Installing
 
 ```
 ./gradlew build
 ```
 
-## Web server start
+## Web Server Start
 
 ```
 java -jar build/libs/pdfcrowd-demo-0.1.0.jar
@@ -28,6 +26,11 @@ java -jar build/libs/pdfcrowd-demo-0.1.0.jar
    Open a sample web page <http://localhost:8080/>
 
    Invoke a conversion to PDF by pressing buttons at the bottom of the page.
+
+## Pdfcrowd API License
+
+   If you wish to use your Pdfcrowd API license, replace **demo** credentials with your Pdfcrowd username and API key in **[src/main/java/demo/DemoController.java](src/main/java/demo/DemoController.java#L39)** file.
+   A [free trial](https://pdfcrowd.com/user/sign_up/?pid=api-trial2) API license can be used too.
 
 ## Documentation
 

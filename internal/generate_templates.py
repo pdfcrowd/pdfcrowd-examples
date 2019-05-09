@@ -139,7 +139,7 @@ LANGS = (
         'framework': 'Django',
         'lang': 'python',
         'prerequisites': ['python'],
-        'cred_file': '[demo/views.py](demo/views.py#L41)',
+        'cred_file': '[demo/views.py](demo/views.py#L37)',
         'install': [
             'pip install -r requirements.txt'
             ],
@@ -195,7 +195,7 @@ LANGS = (
             'php -S localhost:8080 index.php'
             ],
         'prerequisites': ['php', 'composer'],
-        'cred_file': '[index.php](index.php#L42)',
+        'cred_file': '[index.php](index.php#L47)',
         'form': FORM_JINJA
         }
      ),

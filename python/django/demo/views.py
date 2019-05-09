@@ -34,7 +34,7 @@ def index(request):
 
     try:
         # enter your Pdfcrowd credentials to the converter's constructor
-        client = pdfcrowd.HtmlToPdfClient('your-username', 'your-apikey')
+        client = pdfcrowd.HtmlToPdfClient('demo', 'ce544b6ea52a5621fb9d55f8b542d14d')
 
         part = request.POST.get('part_for_conversion')
         if part != None and part != 'all':

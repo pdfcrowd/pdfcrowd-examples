@@ -12,8 +12,6 @@ Sample for dynamic and static HTML to PDF conversions.
 ```
 {% endif %}
 
-Replace **'your_username'** with your Pdfcrowd username and **'your_apikey'** with your Pdfcrowd API key in **{{ cred_file }}** file. Sign up for a [free trial](https://pdfcrowd.com/user/sign_up/?pid=api-trial2) if you don't have the credentials.
-
 {% if install %}
 ## Installing
 
@@ -25,7 +23,7 @@ Replace **'your_username'** with your Pdfcrowd username and **'your_apikey'** wi
 {% endif %}
 
 {% if start %}
-## Web server start
+## Web Server Start
 
 ```
 {% for line in start %}
@@ -40,6 +38,11 @@ Replace **'your_username'** with your Pdfcrowd username and **'your_apikey'** wi
 
 
    Invoke a conversion to PDF by pressing buttons at the bottom of the page.
+
+## Pdfcrowd API License
+
+   If you wish to use your Pdfcrowd API license, replace **demo** credentials with your Pdfcrowd username and API key in **{{ cred_file }}** file.
+   A [free trial](https://pdfcrowd.com/user/sign_up/?pid=api-trial2) API license can be used too.
 
 ## Documentation
 

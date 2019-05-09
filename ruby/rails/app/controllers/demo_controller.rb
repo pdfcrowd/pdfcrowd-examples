@@ -42,7 +42,7 @@ class DemoController < ApplicationController
 
             begin
                 # enter your Pdfcrowd credentials to the converter's constructor
-                client = Pdfcrowd::HtmlToPdfClient.new('your_username', 'your_apikey')
+                client = Pdfcrowd::HtmlToPdfClient.new('demo', 'ce544b6ea52a5621fb9d55f8b542d14d')
 
                 if params[:part_for_conversion] != 'all'
                     # convert just selected part of the page
