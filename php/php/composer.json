@@ -1,6 +1,6 @@
 {
     "require": {
-        "pdfcrowd/pdfcrowd": "^4.3",
+        "pdfcrowd/pdfcrowd": "^4.11",
         "twig/twig": "^2.0"
     }
 }

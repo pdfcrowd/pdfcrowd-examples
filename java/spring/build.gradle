@@ -29,7 +29,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("org.springframework.boot:spring-boot-devtools")
-    compile("com.pdfcrowd:pdfcrowd:4.3.6")
+    compile("com.pdfcrowd:pdfcrowd:4.11.0")
     testCompile("junit:junit")
 
     compileOnly 'org.projectlombok:lombok:1.18.2'

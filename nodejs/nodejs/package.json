@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "pdfcrowd": "^4.3.5"
+    "pdfcrowd": "^4.11.0"
   }
 }
