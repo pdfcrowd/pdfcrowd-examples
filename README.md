@@ -33,6 +33,10 @@ Ajax:
 
 - [Asynchronous JavaScript in Browser](../../tree/master/ajax)
 
+## Pdfcrowd API Playground
+
+The [API Playground](https://pdfcrowd.com/playground/html-to-pdf/) shows more examples and may be used to interactively generate code for your application.
+
 ## Helper Utilities
 
 Some helper utilities (e.g. batch HTML to PDF conversion) can be found in [tools](../../tree/master/tools) folder.
