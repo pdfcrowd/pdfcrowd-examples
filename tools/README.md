@@ -22,10 +22,10 @@ A utility for converting URLs into PDF files. URLs may be specified in a text fi
 
 Run Wikipedia examples with:
 ```
-python convert_pages.py --user $USER_NAME --key $API_KEY --pages sample_urls.txt --out out
+python convert_pages.py --user $USER_NAME --key $API_KEY --pages sample_urls.txt --out output.pdf
 ```
 ```
-python convert_pages.py --user $USER_NAME --key $API_KEY --pages sample_sitemap.xml --out out
+python convert_pages.py --user $USER_NAME --key $API_KEY --pages sample_sitemap.xml --out output.pdf
 ```
 
 ## Multiple URLs to a Single PDF File
