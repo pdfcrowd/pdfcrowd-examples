@@ -30,9 +30,9 @@ python convert_pages.py --user $USER_NAME --key $API_KEY --pages sample_sitemap.
 
 ## Multiple URLs to a Single PDF File
 
-A utility for converting multiple URLs into a single PDF file. URLs may be specified in a text file or a sitemap XML file.
+A utility that can convert multiple URLs into a single PDF file. The URLs can be specified in a text file or a sitemap XML file.
 
-WARNING: This script is just for demo and can consume lots of Pdfcrowd credits! So there is a default limit of 10 pages. Use --max-pages option to increase the limit on your own risk.
+INFO: The script limits the number of PDF pages to 10 by default. You can use the`--max-pages` option to lift that limit but please note that this can potentionally consume a lot of API conversion credits. Use the `-h` option to see all available options.
 
 Run Wikipedia example with:
 ```
