@@ -1,4 +1,4 @@
-Django==1.11.28
+Django==1.11.29
 pdfcrowd==4.11.0
 pkg-resources==0.0.0
 pytz==2018.5
